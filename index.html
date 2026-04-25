@@ -1,870 +1,1431 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Palette,
-  Globe,
-  FileText,
-  Users,
-  Zap,
-  Check,
-  ChevronRight,
-  Menu,
-  X,
-  Mail,
-  MessageCircle,
-  MapPin,
-  Clock,
-  Instagram,
-  Facebook,
-} from "lucide-react";
-import { useState } from "react";
-
-/**
- * Design Philosophy: Gradientes Dinámicos Oscuros
- * - Fondos oscuros con gradientes sutiles
- * - Glassmorphism en tarjetas
- * - Tipografía contrastante (Syne + DM Sans)
- * - Acentos en cian (#06b6d4) y azul (#3b82f6)
- */
-
-export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [portfolioFilter, setPortfolioFilter] = useState("todos");
-
-  const services = [
-    {
-      title: "Diseño de Logos",
-      description:
-        "Identidades visuales únicas que representan la esencia de tu marca. Desde conceptualización hasta archivos finales en todos los formatos.",
-      features: [
-        "Logo principal y mockups",
-        "Paleta de colores",
-        "Archivos AI, PNG, JPG, PDF, SVG",
-        "Manual de marca",
-      ],
-      badge: "Más Popular",
-      icon: Palette,
-    },
-    {
-      title: "Sitios Web",
-      description:
-        "Páginas web modernas, rápidas y responsivas que convierten visitantes en clientes. Diseño personalizado orientado a resultados.",
-      features: [
-        "Diseño responsivo",
-        "Optimización SEO",
-        "Formulario de contacto",
-        "Hosting incluido 1 año",
-      ],
-      badge: "Premium",
-      icon: Globe,
-    },
-    {
-      title: "Tarjetas de Presentación",
-      description:
-        "Tarjetas elegantes y memorables que dejan una impresión duradera. Diseño digital e impreso con acabados premium.",
-      features: [
-        "Diseño doble cara",
-        "Formato digital (vCard)",
-        "Archivo listo para imprenta PDF",
-        "2 propuestas de diseño",
-      ],
-      badge: "",
-      icon: FileText,
-    },
-    {
-      title: "Currículum Vitae",
-      description:
-        "CVs profesionales y modernos que destacan tus habilidades y experiencia. Diseño ATS-friendly y visualmente impactante.",
-      features: [
-        "Diseño personalizado",
-        "Formato PDF",
-        "Carta de presentación y renuncia",
-        "Perfil LinkedIn optimizado",
-      ],
-      badge: "Nuevo",
-      icon: Users,
-    },
-  ];
-
-  const portfolioItems = [
-    {
-      category: "logos",
-      title: "TechFlow Solutions",
-      subtitle: "Identidad visual para startup de software",
-    },
-    {
-      category: "sitios-web",
-      title: "Nexus Commerce",
-      subtitle: "E-commerce moderno y responsivo",
-    },
-    {
-      category: "tarjetas",
-      title: "Arq. María Fernández",
-      subtitle: "Tarjeta de presentación premium",
-    },
-    {
-      category: "cv",
-      title: "Dr. Carlos Mendoza",
-      subtitle: "CV ejecutivo para sector salud",
-    },
-    {
-      category: "logos",
-      title: "Pulse Studio",
-      subtitle: "Marca para estudio de música",
-    },
-    {
-      category: "sitios-web",
-      title: "Consultoría Verde",
-      subtitle: "Landing page corporativa",
-    },
-  ];
-
-  const filteredPortfolio =
-    portfolioFilter === "todos"
-      ? portfolioItems
-      : portfolioItems.filter((item) => item.category === portfolioFilter);
-
-  const processSteps = [
-    {
-      number: "1",
-      title: "Consulta Inicial",
-      description:
-        "Nos reunimos contigo para entender tu visión, objetivos y necesidades específicas. Sin compromisos, sin costos.",
-    },
-    {
-      number: "2",
-      title: "Propuesta & Estrategia",
-      description:
-        "Desarrollamos una propuesta personalizada con concepto creativo, plazos definidos y presupuesto transparente.",
-    },
-    {
-      number: "3",
-      title: "Diseño & Revisiones",
-      description:
-        "Creamos tu proyecto con atención al detalle. Incluye hasta 3 rondas de revisiones para asegurar tu satisfacción.",
-    },
-    {
-      number: "4",
-      title: "Entrega Final",
-      description:
-        "Recibes todos los archivos finales en los formatos que necesitas, listos para usar de inmediato.",
-    },
-  ];
-
-  const pricingPlans = [
-    {
-      name: "BÁSICO",
-      price: "$20",
-      period: "por servicio",
-      description: "Ideal para emprendedores y freelancers que están comenzando.",
-      features: [
-        "1 servicio a elección",
-        "2 propuestas de diseño",
-        "2 rondas de revisión",
-        "Entrega en 5–7 días",
-        "Archivos en PNG/PDF",
-        "Archivos editables",
-        "Soporte prioritario",
-        "Consultoría de marca",
-      ],
-      highlighted: false,
-    },
-    {
-      name: "PROFESIONAL",
-      price: "$160",
-      period: "por proyecto",
-      description: "La opción más popular para negocios en crecimiento.",
-      features: [
-        "2 servicios (página + 1 logo)",
-        "3 propuestas de diseño de logo",
-        "Revisiones ilimitadas",
-        "Entrega en 3–5 días",
-        "Todos los formatos de archivo",
-        "Archivos editables (AI/PSD)",
-        "Soporte prioritario",
-        "Consultoría de marca",
-      ],
-      highlighted: true,
-      badge: "Más Popular",
-    },
-    {
-      name: "PREMIUM",
-      price: "$230",
-      period: "paquete completo",
-      description: "Solución integral para empresas que quieren destacar.",
-      features: [
-        "Todos los servicios incluidos",
-        "Propuestas ilimitadas",
-        "Revisiones ilimitadas",
-        "Entrega en 2–3 días",
-        "Todos los formatos de archivo",
-        "Archivos editables (AI/PSD)",
-        "Soporte prioritario 24/7",
-        "Consultoría de marca",
-      ],
-      highlighted: false,
-    },
-  ];
-
-  const testimonials = [
-    {
-      text: "El logo que diseñaron para nuestra startup superó todas nuestras expectativas. Capturaron perfectamente la esencia de nuestra marca. El proceso fue rápido, profesional y muy colaborativo.",
-      author: "Ana García",
-      role: "CEO, TechFlow Solutions",
-      initials: "AG",
-    },
-    {
-      text: "Mi CV nuevo me ayudó a conseguir entrevistas en hospitales de primer nivel. El diseño es elegante y profesional. Definitivamente lo recomiendo a todos mis colegas.",
-      author: "Carlos Mendoza",
-      role: "Médico Especialista",
-      initials: "CM",
-    },
-    {
-      text: "Las tarjetas de presentación son simplemente hermosas. Cada vez que las entrego, la gente pregunta dónde las mandé hacer. La calidad del diseño es increíble.",
-      author: "Laura Jiménez",
-      role: "Diseñadora de Interiores",
-      initials: "LJ",
-    },
-    {
-      text: "Nuestro sitio web nuevo aumentó las conversiones en un 40%. El diseño es moderno, carga rápido y se ve perfecto en todos los dispositivos. Excelente trabajo.",
-      author: "Roberto Silva",
-      role: "Fundador, Nexus Commerce",
-      initials: "RS",
-    },
-    {
-      text: "Trabajar con Digital Multiservices fue una experiencia excepcional. Entregaron antes del plazo, el diseño fue exactamente lo que pedí y el soporte post-entrega fue impecable.",
-      author: "Valentina Torres",
-      role: "Consultora de Marketing",
-      initials: "VT",
-    },
-    {
-      text: "El logo y las tarjetas de presentación que crearon para mi estudio de arquitectura son perfectos. Elegantes, modernos y representan exactamente mi estilo de trabajo.",
-      author: "Miguel Herrera",
-      role: "Arquitecto",
-      initials: "MH",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="container flex items-center justify-between h-16">
-          <div className="text-xl font-bold font-syne">
-            <span className="text-accent">PRO</span>DIGITAL
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#inicio" className="text-sm hover:text-accent transition">
-              Inicio
-            </a>
-            <a href="#servicios" className="text-sm hover:text-accent transition">
-              Servicios
-            </a>
-            <a href="#portafolio" className="text-sm hover:text-accent transition">
-              Portafolio
-            </a>
-            <a href="#proceso" className="text-sm hover:text-accent transition">
-              Proceso
-            </a>
-            <a href="#contacto" className="text-sm hover:text-accent transition">
-              Contacto
-            </a>
-            <Button className="bg-accent hover:bg-accent/90 text-background font-semibold">
-              Solicitar Cotización
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-background border-b border-border p-4 space-y-3">
-            <a href="#inicio" className="block text-sm hover:text-accent">
-              Inicio
-            </a>
-            <a href="#servicios" className="block text-sm hover:text-accent">
-              Servicios
-            </a>
-            <a href="#portafolio" className="block text-sm hover:text-accent">
-              Portafolio
-            </a>
-            <a href="#proceso" className="block text-sm hover:text-accent">
-              Proceso
-            </a>
-            <a href="#contacto" className="block text-sm hover:text-accent">
-              Contacto
-            </a>
-            <Button className="w-full bg-accent hover:bg-accent/90 text-background">
-              Solicitar Cotización
-            </Button>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section */}
-      <section
-        id="inicio"
-        className="pt-32 pb-20 px-4 relative overflow-hidden bg-gradient-to-br from-background via-background to-blue-950/20"
-      >
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="container relative z-10 max-w-4xl">
-          <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20">
-            <span className="text-2xl">🇨🇷</span>
-            <span className="text-xs font-semibold text-accent uppercase tracking-wider">
-              Agencia de Servicios Digitales Premium
-            </span>
-          </div>
-
-          <h1 className="text-5xl md:text-6xl font-bold font-syne mb-6 leading-tight">
-            Tu Marca Digital,{" "}
-            <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
-              Diseñada para Impactar
-            </span>
-          </h1>
-
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
-            Creamos logos memorables, sitios web de alto impacto, tarjetas de
-            presentación elegantes y currículums que abren puertas. Todo con
-            diseño profesional y entrega rápida.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-background font-semibold"
-            >
-              Comenzar Proyecto
-              <ChevronRight className="w-4 h-4 ml-2" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-dashed border-accent text-accent hover:bg-accent/10"
-            >
-              Ver Servicios
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-12 border-t border-border">
-            <div>
-              <div className="text-4xl font-bold text-accent font-syne mb-2">
-                200+
-              </div>
-              <p className="text-sm text-muted-foreground">Proyectos Entregados</p>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-accent font-syne mb-2">
-                98%
-              </div>
-              <p className="text-sm text-muted-foreground">Clientes Satisfechos</p>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-accent font-syne mb-2">
-                5★
-              </div>
-              <p className="text-sm text-muted-foreground">Calificación Promedio</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="servicios" className="py-20 px-4 bg-gradient-to-b from-background to-blue-950/10">
-        <div className="container">
-          <div className="mb-16">
-            <h2 className="text-4xl font-bold font-syne mb-4">Nuestros Servicios</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Todo lo que tu marca necesita. Servicios digitales completos para
-              emprendedores, empresas y profesionales que quieren destacar en el
-              mundo digital.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <Card
-                  key={index}
-                  className="bg-card/50 backdrop-blur border-border/50 hover:border-accent/30 transition-all duration-300 p-6 group"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <Icon className="w-10 h-10 text-accent" />
-                    {service.badge && (
-                      <span className="text-xs font-semibold px-3 py-1 rounded-full bg-accent/10 text-accent">
-                        {service.badge}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="text-xl font-bold font-syne mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm">
-                        <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    variant="outline"
-                    className="w-full border-dashed border-accent text-accent hover:bg-accent/10"
-                  >
-                    Solicitar este servicio
-                  </Button>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio Section */}
-      <section id="portafolio" className="py-20 px-4 bg-background">
-        <div className="container">
-          <div className="mb-12">
-            <h2 className="text-4xl font-bold font-syne mb-4">Portafolio</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Proyectos que hablan por sí solos. Una selección de trabajos
-              recientes que demuestran nuestro nivel de calidad y atención al
-              detalle.
-            </p>
-          </div>
-
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap gap-3 mb-12">
-            {["todos", "logos", "sitios-web", "tarjetas", "cv"].map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setPortfolioFilter(filter)}
-                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
-                  portfolioFilter === filter
-                    ? "bg-accent text-background"
-                    : "bg-card border border-border hover:border-accent/50"
-                }`}
-              >
-                {filter === "todos"
-                  ? "Todos"
-                  : filter === "logos"
-                  ? "Logos"
-                  : filter === "sitios-web"
-                  ? "Sitios Web"
-                  : filter === "tarjetas"
-                  ? "Tarjetas"
-                  : "CV"}
-              </button>
-            ))}
-          </div>
-
-          {/* Portfolio Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPortfolio.map((item, index) => (
-              <Card
-                key={index}
-                className="bg-gradient-to-br from-card to-card/50 border-border/50 overflow-hidden group cursor-pointer hover:border-accent/30 transition-all"
-              >
-                <div className="aspect-video bg-gradient-to-br from-accent/20 to-blue-500/20 group-hover:from-accent/30 group-hover:to-blue-500/30 transition-all flex items-center justify-center">
-                  <Zap className="w-12 h-12 text-accent/50 group-hover:text-accent/70 transition" />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-bold font-syne text-lg mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{item.subtitle}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section id="proceso" className="py-20 px-4 bg-gradient-to-b from-background to-blue-950/10">
-        <div className="container">
-          <div className="mb-16">
-            <h2 className="text-4xl font-bold font-syne mb-4">Cómo Trabajamos</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Proceso simple, resultados extraordinarios. Nuestro flujo de
-              trabajo está diseñado para ser transparente, eficiente y orientado
-              a superar tus expectativas.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((step, index) => (
-              <div key={index} className="relative">
-                <Card className="bg-card/50 backdrop-blur border-border/50 p-6 h-full">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-accent/20 border border-accent/30 mb-4">
-                    <span className="text-lg font-bold text-accent font-syne">
-                      {step.number}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-bold font-syne mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {step.description}
-                  </p>
-                </Card>
-                {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2">
-                    <ChevronRight className="w-6 h-6 text-border" />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-20 px-4 bg-background">
-        <div className="container">
-          <div className="mb-16">
-            <h2 className="text-4xl font-bold font-syne mb-4">Precios</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Planes transparentes. Sin costos ocultos. Elige el plan que mejor
-              se adapte a tus necesidades o contáctanos para una cotización
-              personalizada.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {pricingPlans.map((plan, index) => (
-              <Card
-                key={index}
-                className={`relative backdrop-blur transition-all ${
-                  plan.highlighted
-                    ? "bg-gradient-to-br from-accent/20 to-blue-500/20 border-accent/50 lg:scale-105"
-                    : "bg-card/50 border-border/50"
-                } p-8`}
-              >
-                {plan.badge && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-accent text-background text-xs font-bold px-3 py-1 rounded-full">
-                      {plan.badge}
-                    </span>
-                  </div>
-                )}
-                <h3 className="text-xl font-bold font-syne mb-2">{plan.name}</h3>
-                <div className="mb-2">
-                  <span className="text-4xl font-bold text-accent font-syne">
-                    {plan.price}
-                  </span>
-                  <span className="text-sm text-muted-foreground ml-2">
-                    {plan.period}
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground mb-6">
-                  {plan.description}
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  className={`w-full font-semibold ${
-                    plan.highlighted
-                      ? "bg-accent hover:bg-accent/90 text-background"
-                      : "bg-card border border-accent text-accent hover:bg-accent/10"
-                  }`}
-                >
-                  Elegir {plan.name.toLowerCase()}
-                </Button>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <p className="text-muted-foreground">
-              ¿Necesitas algo diferente?{" "}
-              <a href="#contacto" className="text-accent hover:underline font-semibold">
-                Solicita una cotización personalizada →
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-background to-blue-950/10">
-        <div className="container">
-          <div className="mb-16">
-            <h2 className="text-4xl font-bold font-syne mb-4">Testimonios</h2>
-            <p className="text-lg text-muted-foreground">
-              Lo que dicen nuestros clientes
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="bg-card/50 backdrop-blur border-border/50 p-6"
-              >
-                <p className="text-sm text-muted-foreground mb-6 italic">
-                  "{testimonial.text}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center">
-                    <span className="text-xs font-bold text-accent">
-                      {testimonial.initials}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">{testimonial.author}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {testimonial.role}
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contacto" className="py-20 px-4 bg-background">
-        <div className="container max-w-4xl">
-          <div className="mb-12">
-            <h2 className="text-4xl font-bold font-syne mb-4">Contacto</h2>
-            <p className="text-lg text-muted-foreground">
-              ¿Listo para comenzar? Cuéntanos sobre tu proyecto y te enviaremos
-              una cotización personalizada en menos de 24 horas.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {/* Contact Info */}
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <MessageCircle className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold mb-1">WhatsApp</h3>
-                  <a
-                    href="tel:+50672284602"
-                    className="text-accent hover:underline"
-                  >
-                    +(506) 7228-4602
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Mail className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold mb-1">Email</h3>
-                  <a
-                    href="mailto:norercarlop04@gmail.com"
-                    className="text-accent hover:underline"
-                  >
-                    norercarlop04@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold mb-1">Ubicación</h3>
-                  <p className="text-muted-foreground">
-                    Disponible en todo Costa Rica
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Clock className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold mb-1">Horario</h3>
-                  <p className="text-muted-foreground">Lun–Vie: 6am – 6pm</p>
-                </div>
-              </div>
-              <div className="pt-4 border-t border-border">
-                <p className="text-sm text-muted-foreground mb-4">
-                  ⚡ Respondemos todas las consultas en menos de 24 horas. ¡Tu
-                  proyecto es nuestra prioridad!
-                </p>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <Card className="bg-card/50 backdrop-blur border-border/50 p-6">
-              <form className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Nombre *
-                  </label>
-                  <Input
-                    placeholder="Tu nombre completo"
-                    className="bg-input border-border"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Email *
-                  </label>
-                  <Input
-                    type="email"
-                    placeholder="tu@email.com"
-                    className="bg-input border-border"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Servicio de Interés
-                  </label>
-                  <Select>
-                    <SelectTrigger className="bg-input border-border">
-                      <SelectValue placeholder="Selecciona un servicio" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="logo">Diseño de Logo</SelectItem>
-                      <SelectItem value="web">Sitio Web</SelectItem>
-                      <SelectItem value="tarjeta">
-                        Tarjeta de Presentación
-                      </SelectItem>
-                      <SelectItem value="cv">Currículum Vitae</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Mensaje *
-                  </label>
-                  <Textarea
-                    placeholder="Cuéntanos sobre tu proyecto, plazos, presupuesto aproximado..."
-                    className="bg-input border-border min-h-24"
-                  />
-                </div>
-                <Button className="w-full bg-accent hover:bg-accent/90 text-background font-semibold">
-                  Enviar Mensaje
-                </Button>
-              </form>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-card/50 border-t border-border py-12 px-4">
-        <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="font-bold font-syne text-lg mb-4">
-                <span className="text-accent">PRO</span>DIGITAL
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Agencia de servicios digitales especializada en crear identidades
-                visuales y presencia online que generan resultados reales.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Servicios</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-accent transition">
-                    Diseño de Logos
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-accent transition">
-                    Sitios Web
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-accent transition">
-                    Tarjetas de Presentación
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-accent transition">
-                    Currículum Vitae
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Empresa</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a href="#portafolio" className="hover:text-accent transition">
-                    Portafolio
-                  </a>
-                </li>
-                <li>
-                  <a href="#proceso" className="hover:text-accent transition">
-                    Proceso de Trabajo
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-accent transition">
-                    Testimonios
-                  </a>
-                </li>
-                <li>
-                  <a href="#contacto" className="hover:text-accent transition">
-                    Contacto
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Síguenos</h4>
-              <div className="flex gap-4">
-                <a href="#" className="text-muted-foreground hover:text-accent transition">
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-accent transition">
-                  <Facebook className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-border pt-8">
-            <p className="text-center text-sm text-muted-foreground">
-              © 2026 Digital Multiservices. Todos los derechos reservados.
-            </p>
-            <p className="text-center text-xs text-muted-foreground mt-2">
-              Diseñado con ⚡ para el mundo digital
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Digital Multiservices - Agencia de Servicios Digitales</title>
+    <meta name="description" content="Agencia de servicios digitales: diseño de logos, sitios web, tarjetas de presentación y currículums profesionales.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+:root {
+  --primary: #06b6d4;
+  --primary-foreground: #0f172a;
+  --background: #0f172a;
+  --foreground: #e2e8f0;
+  --card: #1e293b;
+  --card-foreground: #e2e8f0;
+  --muted: #475569;
+  --muted-foreground: #94a3b8;
+  --accent: #06b6d4;
+  --border: #334155;
+  --input: #1e293b;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: 'Syne', sans-serif;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-menu {
+  display: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-menu a {
+  font-size: 0.875rem;
+  transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+  color: var(--accent);
+}
+
+.nav-btn {
+  background: var(--accent);
+  color: var(--background);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.nav-btn:hover {
+  opacity: 0.9;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  color: var(--foreground);
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .nav-menu {
+    display: flex;
+  }
+  .menu-toggle {
+    display: none !important;
+  }
+}
+
+/* Hero Section */
+.hero {
+  margin-top: 64px;
+  padding: 8rem 1rem;
+  background: linear-gradient(to bottom right, var(--background), rgba(30, 58, 138, 0.1));
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 80px;
+  right: 40px;
+  width: 288px;
+  height: 288px;
+  background: rgba(6, 182, 212, 0.1);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  width: 384px;
+  height: 384px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 .highlight {
+  background: linear-gradient(to right, var(--accent), #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  margin-bottom: 2rem;
+  max-width: 42rem;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 640px) {
+  .hero-buttons {
+    flex-direction: row;
+  }
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--background);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px dashed var(--accent);
+  color: var(--accent);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+}
+
+.btn-outline:hover {
+  background: rgba(6, 182, 212, 0.1);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.stat {
+  text-align: left;
+}
+
+.stat-value {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: var(--accent);
+  font-family: 'Syne', sans-serif;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Services Section */
+.section {
+  padding: 5rem 1rem;
+}
+
+.section-header {
+  max-width: 1280px;
+  margin: 0 auto 4rem;
+}
+
+.section-header h2 {
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  max-width: 42rem;
+}
+
+.services-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.service-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 0.65rem;
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.service-card:hover {
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.service-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.service-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--accent);
+}
+
+.service-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--accent);
+}
+
+.service-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-card p {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-bottom: 1rem;
+}
+
+.service-features {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.service-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-features li::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.btn-service {
+  width: 100%;
+  border: 2px dashed var(--accent);
+  color: var(--accent);
+  background: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-service:hover {
+  background: rgba(6, 182, 212, 0.1);
+}
+
+/* Portfolio Section */
+.portfolio-filters {
+  max-width: 1280px;
+  margin: 0 auto 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--foreground);
+  transition: all 0.3s;
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  color: var(--background);
+  border-color: var(--accent);
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+}
+
+.portfolio-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.portfolio-item {
+  background: linear-gradient(to bottom right, rgba(30, 41, 59, 0.5), rgba(30, 41, 59, 0.3));
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 0.65rem;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.portfolio-item:hover {
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.portfolio-image {
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(to bottom right, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  opacity: 0.5;
+  transition: all 0.3s;
+}
+
+.portfolio-item:hover .portfolio-image {
+  opacity: 0.7;
+}
+
+.portfolio-info {
+  padding: 1.5rem;
+}
+
+.portfolio-info h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+}
+
+.portfolio-info p {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Process Section */
+.process-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .process-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.process-step {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 0.65rem;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.step-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(6, 182, 212, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: var(--accent);
+  font-family: 'Syne', sans-serif;
+}
+
+.process-step h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.process-step p {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Pricing Section */
+.pricing-grid {
+  max-width: 1280px;
+  margin: 0 auto 3rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pricing-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 0.65rem;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.pricing-card.highlighted {
+  background: linear-gradient(to bottom right, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
+  border-color: rgba(6, 182, 212, 0.5);
+  transform: scale(1.05);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--background);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.pricing-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-price {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.pricing-period {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-bottom: 1rem;
+}
+
+.pricing-description {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-bottom: 1.5rem;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.pricing-features li::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.btn-pricing {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s;
+}
+
+.pricing-card.highlighted .btn-pricing {
+  background: var(--accent);
+  color: var(--background);
+  border: none;
+}
+
+.pricing-card:not(.highlighted) .btn-pricing {
+  background: var(--card);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-pricing:hover {
+  opacity: 0.9;
+}
+
+/* Testimonials Section */
+.testimonials-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.testimonial-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 0.65rem;
+  padding: 1.5rem;
+}
+
+.testimonial-text {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(6, 182, 212, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.author-info h4 {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.author-info p {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* Contact Section */
+.contact-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contact-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.contact-item h3 {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.contact-item p,
+.contact-item a {
+  font-size: 0.875rem;
+  color: var(--accent);
+}
+
+.contact-form {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 0.65rem;
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  background: var(--input);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-group textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.btn-submit {
+  width: 100%;
+  background: var(--accent);
+  color: var(--background);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+}
+
+/* Footer */
+footer {
+  background: rgba(30, 41, 59, 0.5);
+  border-top: 1px solid var(--border);
+  padding: 3rem 1rem;
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer-section h4 {
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.footer-section p {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: var(--accent);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  width: 24px;
+  height: 24px;
+  color: var(--muted-foreground);
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.footer-bottom p:last-child {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .hero {
+    padding: 4rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-card.highlighted {
+    transform: scale(1);
+  }
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><span>PRO</span>DIGITAL</div>
+            <div class="nav-menu">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#portafolio">Portafolio</a>
+                <a href="#proceso">Proceso</a>
+                <a href="#contacto">Contacto</a>
+                <button class="nav-btn">Solicitar Cotización</button>
+            </div>
+            <button class="menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🇨🇷</span>
+                <span>AGENCIA DE SERVICIOS DIGITALES PREMIUM</span>
+            </div>
+            <h1>Tu Marca Digital, <span class="highlight">Diseñada para Impactar</span></h1>
+            <p>Creamos logos memorables, sitios web de alto impacto, tarjetas de presentación elegantes y currículums que abren puertas. Todo con diseño profesional y entrega rápida.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary">Comenzar Proyecto →</button>
+                <button class="btn-outline">Ver Servicios</button>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">200+</div>
+                    <div class="stat-label">Proyectos Entregados</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Clientes Satisfechos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5★</div>
+                    <div class="stat-label">Calificación Promedio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="section" style="background: linear-gradient(to bottom, var(--background), rgba(30, 58, 138, 0.1));">
+        <div class="section-header">
+            <h2>Nuestros Servicios</h2>
+            <p>Todo lo que tu marca necesita. Servicios digitales completos para emprendedores, empresas y profesionales que quieren destacar en el mundo digital.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-header">
+                    <span class="service-icon">🎨</span>
+                    <span class="service-badge">Más Popular</span>
+                </div>
+                <h3>Diseño de Logos</h3>
+                <p>Identidades visuales únicas que representan la esencia de tu marca. Desde conceptualización hasta archivos finales en todos los formatos.</p>
+                <ul class="service-features">
+                    <li>Logo principal y mockups</li>
+                    <li>Paleta de colores</li>
+                    <li>Archivos AI, PNG, JPG, PDF, SVG</li>
+                    <li>Manual de marca</li>
+                </ul>
+                <button class="btn-service">Solicitar este servicio</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <span class="service-icon">🌐</span>
+                    <span class="service-badge">Premium</span>
+                </div>
+                <h3>Sitios Web</h3>
+                <p>Páginas web modernas, rápidas y responsivas que convierten visitantes en clientes. Diseño personalizado orientado a resultados.</p>
+                <ul class="service-features">
+                    <li>Diseño responsivo</li>
+                    <li>Optimización SEO</li>
+                    <li>Formulario de contacto</li>
+                    <li>Hosting incluido 1 año</li>
+                </ul>
+                <button class="btn-service">Solicitar este servicio</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <span class="service-icon">🎫</span>
+                </div>
+                <h3>Tarjetas de Presentación</h3>
+                <p>Tarjetas elegantes y memorables que dejan una impresión duradera. Diseño digital e impreso con acabados premium.</p>
+                <ul class="service-features">
+                    <li>Diseño doble cara</li>
+                    <li>Formato digital (vCard)</li>
+                    <li>Archivo listo para imprenta PDF</li>
+                    <li>2 propuestas de diseño</li>
+                </ul>
+                <button class="btn-service">Solicitar este servicio</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <span class="service-icon">📄</span>
+                    <span class="service-badge">Nuevo</span>
+                </div>
+                <h3>Currículum Vitae</h3>
+                <p>CVs profesionales y modernos que destacan tus habilidades y experiencia. Diseño ATS-friendly y visualmente impactante.</p>
+                <ul class="service-features">
+                    <li>Diseño personalizado</li>
+                    <li>Formato PDF</li>
+                    <li>Carta de presentación y renuncia</li>
+                    <li>Perfil LinkedIn optimizado</li>
+                </ul>
+                <button class="btn-service">Solicitar este servicio</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portafolio" class="section">
+        <div class="section-header">
+            <h2>Portafolio</h2>
+            <p>Proyectos que hablan por sí solos. Una selección de trabajos recientes que demuestran nuestro nivel de calidad y atención al detalle.</p>
+        </div>
+        <div class="portfolio-filters">
+            <button class="filter-btn active" onclick="filterPortfolio('todos')">Todos</button>
+            <button class="filter-btn" onclick="filterPortfolio('logos')">Logos</button>
+            <button class="filter-btn" onclick="filterPortfolio('web')">Sitios Web</button>
+            <button class="filter-btn" onclick="filterPortfolio('tarjetas')">Tarjetas</button>
+            <button class="filter-btn" onclick="filterPortfolio('cv')">CV</button>
+        </div>
+        <div class="portfolio-grid" id="portfolioGrid">
+            <div class="portfolio-item" data-category="logos">
+                <div class="portfolio-image">⚡</div>
+                <div class="portfolio-info">
+                    <h3>TechFlow Solutions</h3>
+                    <p>Identidad visual para startup de software</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="web">
+                <div class="portfolio-image">⚡</div>
+                <div class="portfolio-info">
+                    <h3>Nexus Commerce</h3>
+                    <p>E-commerce moderno y responsivo</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="tarjetas">
+                <div class="portfolio-image">⚡</div>
+                <div class="portfolio-info">
+                    <h3>Arq. María Fernández</h3>
+                    <p>Tarjeta de presentación premium</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="cv">
+                <div class="portfolio-image">⚡</div>
+                <div class="portfolio-info">
+                    <h3>Dr. Carlos Mendoza</h3>
+                    <p>CV ejecutivo para sector salud</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="logos">
+                <div class="portfolio-image">⚡</div>
+                <div class="portfolio-info">
+                    <h3>Pulse Studio</h3>
+                    <p>Marca para estudio de música</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="web">
+                <div class="portfolio-image">⚡</div>
+                <div class="portfolio-info">
+                    <h3>Consultoría Verde</h3>
+                    <p>Landing page corporativa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="proceso" class="section" style="background: linear-gradient(to bottom, var(--background), rgba(30, 58, 138, 0.1));">
+        <div class="section-header">
+            <h2>Cómo Trabajamos</h2>
+            <p>Proceso simple, resultados extraordinarios. Nuestro flujo de trabajo está diseñado para ser transparente, eficiente y orientado a superar tus expectativas.</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Consulta Inicial</h3>
+                <p>Nos reunimos contigo para entender tu visión, objetivos y necesidades específicas. Sin compromisos, sin costos.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Propuesta & Estrategia</h3>
+                <p>Desarrollamos una propuesta personalizada con concepto creativo, plazos definidos y presupuesto transparente.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Diseño & Revisiones</h3>
+                <p>Creamos tu proyecto con atención al detalle. Incluye hasta 3 rondas de revisiones para asegurar tu satisfacción.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Entrega Final</h3>
+                <p>Recibes todos los archivos finales en los formatos que necesitas, listos para usar de inmediato.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section">
+        <div class="section-header">
+            <h2>Precios</h2>
+            <p>Planes transparentes. Sin costos ocultos. Elige el plan que mejor se adapte a tus necesidades o contáctanos para una cotización personalizada.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>BÁSICO</h3>
+                <div class="pricing-price">$20</div>
+                <div class="pricing-period">por servicio</div>
+                <div class="pricing-description">Ideal para emprendedores y freelancers que están comenzando.</div>
+                <ul class="pricing-features">
+                    <li>1 servicio a elección</li>
+                    <li>2 propuestas de diseño</li>
+                    <li>2 rondas de revisión</li>
+                    <li>Entrega en 5–7 días</li>
+                    <li>Archivos en PNG/PDF</li>
+                    <li>Archivos editables</li>
+                    <li>Soporte prioritario</li>
+                    <li>Consultoría de marca</li>
+                </ul>
+                <button class="btn-pricing">Elegir Básico</button>
+            </div>
+
+            <div class="pricing-card highlighted">
+                <div class="pricing-badge">Más Popular</div>
+                <h3>PROFESIONAL</h3>
+                <div class="pricing-price">$160</div>
+                <div class="pricing-period">por proyecto</div>
+                <div class="pricing-description">La opción más popular para negocios en crecimiento.</div>
+                <ul class="pricing-features">
+                    <li>2 servicios (página + 1 logo)</li>
+                    <li>3 propuestas de diseño de logo</li>
+                    <li>Revisiones ilimitadas</li>
+                    <li>Entrega en 3–5 días</li>
+                    <li>Todos los formatos de archivo</li>
+                    <li>Archivos editables (AI/PSD)</li>
+                    <li>Soporte prioritario</li>
+                    <li>Consultoría de marca</li>
+                </ul>
+                <button class="btn-pricing">Elegir Profesional</button>
+            </div>
+
+            <div class="pricing-card">
+                <h3>PREMIUM</h3>
+                <div class="pricing-price">$230</div>
+                <div class="pricing-period">paquete completo</div>
+                <div class="pricing-description">Solución integral para empresas que quieren destacar.</div>
+                <ul class="pricing-features">
+                    <li>Todos los servicios incluidos</li>
+                    <li>Propuestas ilimitadas</li>
+                    <li>Revisiones ilimitadas</li>
+                    <li>Entrega en 2–3 días</li>
+                    <li>Todos los formatos de archivo</li>
+                    <li>Archivos editables (AI/PSD)</li>
+                    <li>Soporte prioritario 24/7</li>
+                    <li>Consultoría de marca</li>
+                </ul>
+                <button class="btn-pricing">Elegir Premium</button>
+            </div>
+        </div>
+        <div style="max-width: 1280px; margin: 0 auto; text-align: center;">
+            <p style="color: var(--muted-foreground);">¿Necesitas algo diferente? <a href="#contacto" style="color: var(--accent); font-weight: 600;">Solicita una cotización personalizada →</a></p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" style="background: linear-gradient(to bottom, var(--background), rgba(30, 58, 138, 0.1));">
+        <div class="section-header">
+            <h2>Testimonios</h2>
+            <p>Lo que dicen nuestros clientes</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"El logo que diseñaron para nuestra startup superó todas nuestras expectativas. Capturaron perfectamente la esencia de nuestra marca. El proceso fue rápido, profesional y muy colaborativo."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AG</div>
+                    <div class="author-info">
+                        <h4>Ana García</h4>
+                        <p>CEO, TechFlow Solutions</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Mi CV nuevo me ayudó a conseguir entrevistas en hospitales de primer nivel. El diseño es elegante y profesional. Definitivamente lo recomiendo a todos mis colegas."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">CM</div>
+                    <div class="author-info">
+                        <h4>Carlos Mendoza</h4>
+                        <p>Médico Especialista</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Las tarjetas de presentación son simplemente hermosas. Cada vez que las entrego, la gente pregunta dónde las mandé hacer. La calidad del diseño es increíble."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">LJ</div>
+                    <div class="author-info">
+                        <h4>Laura Jiménez</h4>
+                        <p>Diseñadora de Interiores</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Nuestro sitio web nuevo aumentó las conversiones en un 40%. El diseño es moderno, carga rápido y se ve perfecto en todos los dispositivos. Excelente trabajo."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RS</div>
+                    <div class="author-info">
+                        <h4>Roberto Silva</h4>
+                        <p>Fundador, Nexus Commerce</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Trabajar con Digital Multiservices fue una experiencia excepcional. Entregaron antes del plazo, el diseño fue exactamente lo que pedí y el soporte post-entrega fue impecable."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">VT</div>
+                    <div class="author-info">
+                        <h4>Valentina Torres</h4>
+                        <p>Consultora de Marketing</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-text">"El logo y las tarjetas de presentación que crearon para mi estudio de arquitectura son perfectos. Elegantes, modernos y representan exactamente mi estilo de trabajo."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MH</div>
+                    <div class="author-info">
+                        <h4>Miguel Herrera</h4>
+                        <p>Arquitecto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="section">
+        <div class="section-header">
+            <h2>Contacto</h2>
+            <p>¿Listo para comenzar? Cuéntanos sobre tu proyecto y te enviaremos una cotización personalizada en menos de 24 horas.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">💬</span>
+                    <div>
+                        <h3>WhatsApp</h3>
+                        <a href="tel:+50672284602">+(506) 7228-4602</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <div>
+                        <h3>Email</h3>
+                        <a href="mailto:norercarlop04@gmail.com">norercarlop04@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div>
+                        <h3>Ubicación</h3>
+                        <p>Disponible en todo Costa Rica</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🕐</span>
+                    <div>
+                        <h3>Horario</h3>
+                        <p>Lun–Vie: 6am – 6pm</p>
+                    </div>
+                </div>
+                <div style="padding-top: 1rem; border-top: 1px solid var(--border);">
+                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">⚡ Respondemos todas las consultas en menos de 24 horas. ¡Tu proyecto es nuestra prioridad!</p>
+                </div>
+            </div>
+
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>Nombre *</label>
+                    <input type="text" placeholder="Tu nombre completo" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Servicio de Interés</label>
+                    <select>
+                        <option>Selecciona un servicio</option>
+                        <option>Diseño de Logo</option>
+                        <option>Sitio Web</option>
+                        <option>Tarjeta de Presentación</option>
+                        <option>Currículum Vitae</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mensaje *</label>
+                    <textarea placeholder="Cuéntanos sobre tu proyecto, plazos, presupuesto aproximado..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4 style="color: var(--foreground);"><span style="color: var(--accent);">PRO</span>DIGITAL</h4>
+                    <p>Agencia de servicios digitales especializada en crear identidades visuales y presencia online que generan resultados reales.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#servicios">Diseño de Logos</a></li>
+                        <li><a href="#servicios">Sitios Web</a></li>
+                        <li><a href="#servicios">Tarjetas de Presentación</a></li>
+                        <li><a href="#servicios">Currículum Vitae</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#portafolio">Portafolio</a></li>
+                        <li><a href="#proceso">Proceso de Trabajo</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" title="Instagram">📱</a>
+                        <a href="#" title="Facebook">f</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Digital Multiservices. Todos los derechos reservados.</p>
+                <p>Diseñado con ⚡ para el mundo digital</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            items.forEach(item => {
+                if (category === 'todos' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto.');
+            event.target.reset();
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
