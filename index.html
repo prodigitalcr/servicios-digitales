@@ -3,192 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRODIGITAL | Soluciones Digitales que Venden</title>
+    <title>PRODIGITAL | Arquitectura de Negocios Digitales</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00D4FF;
             --secondary: #7C3AED;
-            --dark: #0D1117;
-            --accent: #FFD700;
-            --glass: rgba(255, 255, 255, 0.05);
-            --border: rgba(0, 212, 255, 0.2);
+            --dark: #05070A;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(0, 212, 255, 0.15);
+            --gold: #FFD700;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
         body {
             font-family: 'DM Sans', sans-serif;
             background-color: var(--dark);
-            color: white;
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            line-height: 1.5;
         }
 
-        /* Estilo Moderno de Cristal */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
+        /* --- UI COMPONENTS --- */
+        .glass {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: transform 0.3s ease;
+            border-radius: 24px;
         }
 
-        /* Hero Section - Jerarquía de Intención */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: radial-gradient(circle at top right, #1a1f2e, #0D1117);
-            padding: 0 10%;
-        }
-
-        .hero-content h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #fff, var(--primary));
+        .glow-text {
+            background: linear-gradient(to right, #fff, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .btn-main {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--dark);
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            margin-top: 2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+        /* --- HERO: HIGH CONVERSION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+            background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.15), transparent 40%);
         }
 
-        .btn-main:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.4);
+        .hero-content { max-width: 850px; z-index: 2; }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            font-weight: 800;
         }
 
-        /* Secciones de Contenido */
-        section { padding: 80px 10%; }
-
-        .grid-services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Formulario Inteligente */
-        .quote-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: white;
-        }
-
-        .price-tag {
+        .availability-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 212, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 100px;
             color: var(--primary);
-            font-size: 0.9rem;
             font-weight: bold;
-            display: block;
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--primary);
         }
 
-        /* Footer y Social */
-        footer { border-top: 1px solid var(--border); padding: 40px 10%; text-align: center; }
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+            animation: pulse-ring 1.5s infinite;
+        }
 
-        @media (max-width: 768px) {
-            .hero { padding: 0 5%; }
+        @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
+
+        /* --- COTIZADOR DINÁMICO --- */
+        .calculator-container {
+            padding: 100px 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .service-picker {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option-card {
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option-card:hover { border-color: var(--primary); background: rgba(0, 212, 255, 0.05); }
+        .option-card.active { border-color: var(--primary); background: rgba(0, 212, 255, 0.1); box-shadow: 0 0 20px rgba(0, 212, 255, 0.2); }
+
+        .price-display {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .big-price {
+            font-family: 'Syne';
+            font-size: 4rem;
+            color: var(--primary);
+            display: block;
+        }
+
+        /* --- BOTONES --- */
+        .cta-pro {
+            background: #fff;
+            color: #000;
+            padding: 1.2rem 3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-pro:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .calculator-container { grid-template-columns: 1fr; }
+            .hero { text-align: center; padding: 0 5%; }
+            .hero-content { margin: 0 auto; }
         }
     </style>
 </head>
 <body>
 
-    <nav style="position: fixed; width: 100%; padding: 1.5rem 10%; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(13,17,23,0.9);">
-        <div style="font-family: 'Syne'; font-weight: 800; font-size: 1.5rem;">PRODIGITAL</div>
-        <a href="#contacto" class="btn-main" style="padding: 0.6rem 1.2rem; margin-top: 0;">Cotizar Ahora</a>
+    <nav style="position: fixed; width: 100%; padding: 2rem 10%; display: flex; justify-content: space-between; align-items: center; z-index: 100;">
+        <div style="font-family: 'Syne'; font-weight: 800; font-size: 1.8rem; letter-spacing: -1px;">PRO<span style="color: var(--primary);">DIGITAL</span></div>
+        <div class="glass" style="padding: 10px 25px; display: flex; gap: 20px; font-size: 0.9rem;">
+            <a href="#proceso" style="color: white; text-decoration: none;">Proceso</a>
+            <a href="#cotizador" style="color: white; text-decoration: none;">Precios</a>
+        </div>
     </nav>
 
     <header class="hero">
         <div class="hero-content">
-            <span style="color: var(--primary); font-weight: bold; letter-spacing: 2px;">DISEÑO QUE VENDE</span>
-            <h1>Impulsamos tu negocio con <br> identidad digital de élite.</h1>
-            <p style="font-size: 1.2rem; color: #B0B8C1; max-width: 700px; margin: 0 auto;">Desde logos que impactan hasta sitios web que cierran ventas. Profesionalismo garantizado en Costa Rica.</p>
-            <a href="#servicios" class="btn-main">Ver Soluciones</a>
+            <div class="availability-badge">
+                <div class="pulse"></div> 2 ESPACIOS DISPONIBLES PARA MAYO
+            </div>
+            <h1 class="glow-text">Diseñamos negocios que dominan su mercado.</h1>
+            <p style="font-size: 1.4rem; color: #8892b0; margin-bottom: 3rem; max-width: 600px;">
+                No vendemos "páginas web". Construimos **infraestructura de ventas** de alto rendimiento para profesionales exigentes.
+            </p>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <a href="#cotizador" class="cta-pro">Empezar Proyecto</a>
+                <a href="https://wa.me/50672284602" class="glass" style="padding: 1.2rem 2.5rem; color: white; text-decoration: none; font-weight: bold; border-radius: 12px;">Hablar con un Estratega</a>
+            </div>
         </div>
     </header>
 
-    <section id="servicios">
-        <h2 style="text-align: center; margin-bottom: 3rem; font-family: 'Syne'; font-size: 2.5rem;">Soluciones a tu Medida</h2>
-        <div class="grid-services">
-            <div class="glass-card">
-                <span class="price-tag">Desde $120</span>
-                <h3>Sitios Web Pro</h3>
-                <p>No solo una cara bonita, sino una oficina virtual abierta 24/7 para captar clientes.</p>
-            </div>
-            <div class="glass-card">
-                <span class="price-tag">Desde $45</span>
-                <h3>Identidad de Marca</h3>
-                <p>Logos y manuales de marca que transmiten la confianza que tu negocio merece.</p>
-            </div>
-            <div class="glass-card">
-                <span class="price-tag">Desde $25</span>
-                <h3>Presencia Profesional</h3>
-                <p>CVs y tarjetas de presentación diseñadas para ganar oportunidades de alto valor.</p>
-            </div>
+    <section id="cotizador" style="background: #080a0f;">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2 style="font-family: 'Syne'; font-size: 3rem;">Configura tu Inversión</h2>
+            <p style="color: var(--primary);">Transparencia total. Sin sorpresas ocultas.</p>
         </div>
-    </section>
 
-    <section id="contacto" style="background: #111827;">
-        <div class="quote-form glass-card">
-            <h2 style="margin-bottom: 1rem;">Inicia tu proyecto</h2>
-            <p style="margin-bottom: 2rem; font-size: 0.9rem;">Cuéntanos qué necesitas y recibe una propuesta personalizada.</p>
-            
-            <form id="contactForm">
-                <input type="text" class="form-input" placeholder="Tu nombre" required>
-                <select class="form-input" id="serviceType">
-                    <option value="">¿En qué podemos ayudarte?</option>
-                    <option value="web">Sitio Web Profesional</option>
-                    <option value="brand">Diseño de Logotipo / Marca</option>
-                    <option value="print">Tarjetas / Material Impreso</option>
-                </select>
-                <textarea class="form-input" rows="4" placeholder="Cuéntanos un poco sobre tu negocio..."></textarea>
-                
-                <div style="background: rgba(0,212,255,0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.85rem;">
-                    <strong>ℹ️ Proceso de Reserva:</strong> Para iniciar el diseño, solicitamos un 50% de adelanto mediante SINPE Móvil o Transferencia.
+        <div class="calculator-container">
+            <div class="service-picker">
+                <div class="option-card glass active" onclick="updatePrice(this, 150, 'Web Corporativa')">
+                    <div>
+                        <h3>Sitio Web Pro</h3>
+                        <p style="font-size: 0.8rem; opacity: 0.6;">Optimizado para conversión y SEO</p>
+                    </div>
+                    <strong>$150+</strong>
                 </div>
+                <div class="option-card glass" onclick="updatePrice(this, 60, 'Identidad Visual')">
+                    <div>
+                        <h3>Branding Elite</h3>
+                        <p style="font-size: 0.8rem; opacity: 0.6;">Logo, tipografía y manual de marca</p>
+                    </div>
+                    <strong>$60+</strong>
+                </div>
+                <div class="option-card glass" onclick="updatePrice(this, 30, 'Estrategia CV')">
+                    <div>
+                        <h3>Premium CV/Resume</h3>
+                        <p style="font-size: 0.8rem; opacity: 0.6;">Diseño que garantiza entrevistas</p>
+                    </div>
+                    <strong>$30+</strong>
+                </div>
+            </div>
 
-                <button type="submit" class="btn-main" style="width: 100%;">Enviar Solicitud</button>
-            </form>
+            <div class="price-display glass">
+                <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Inversión Estimada</span>
+                <span class="big-price" id="totalPrice">$150</span>
+                <p id="serviceName" style="color: var(--primary); margin-bottom: 2rem;">Web Corporativa</p>
+                
+                <ul style="text-align: left; margin-bottom: 2rem; list-style: none; font-size: 0.9rem; opacity: 0.8;">
+                    <li>✅ Entrega Prioritaria (5-7 días)</li>
+                    <li>✅ Soporte Post-Entrega 30 días</li>
+                    <li>✅ Optimización Móvil Avanzada</li>
+                </ul>
+
+                <button class="cta-pro" style="width: 100%;" onclick="sendWhatsApp()">Reservar con el 50%</button>
+                <p style="font-size: 0.7rem; margin-top: 1rem; opacity: 0.5;">Aceptamos SINPE Móvil y Transferencias Bancarias CR</p>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>© 2026 PRODIGITAL Costa Rica | Elevando estándares digitales.</p>
-        <div style="margin-top: 1rem;">
-            <a href="https://wa.me/50672284602" style="color: var(--primary); text-decoration: none;">WhatsApp Directo</a>
+    <footer style="padding: 100px 10%; text-align: center; background: #05070a;">
+        <h2 style="font-family: 'Syne'; margin-bottom: 2rem;">¿Listo para elevar el nivel?</h2>
+        <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 4rem;">
+            <div>
+                <span style="display: block; color: var(--primary); font-weight: bold;">EMAIL</span>
+                norercarlop04@gmail.com
+            </div>
+            <div>
+                <span style="display: block; color: var(--primary); font-weight: bold;">UBICACIÓN</span>
+                Costa Rica (Global)
+            </div>
         </div>
+        <p style="opacity: 0.3; font-size: 0.8rem;">© 2026 PRODIGITAL - Business Architecture & Design</p>
     </footer>
 
     <script>
-        // Lógica de interacción simple
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const service = document.getElementById('serviceType').value;
-            alert('¡Solicitud recibida! Un estratega te contactará para analizar tu proyecto de ' + service);
+        let currentPrice = 150;
+        let currentService = "Web Corporativa";
+
+        function updatePrice(element, price, name) {
+            // UI Update
+            document.querySelectorAll('.option-card').forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
+
+            // Logic Update
+            currentPrice = price;
+            currentService = name;
+            
+            document.getElementById('totalPrice').innerText = '$' + price;
+            document.getElementById('serviceName').innerText = name;
+        }
+
+        function sendWhatsApp() {
+            const message = `Hola PRODIGITAL, me interesa el servicio de ${currentService} con la inversión estimada de $${currentPrice}. ¿Podemos agendar?`;
+            const url = `https://wa.me/50672284602?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Animación de entrada suave
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.glass-card, section').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
         });
     </script>
 </body>
