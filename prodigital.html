@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODIGITAL | Soluciones Digitales que Venden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00D4FF;
+            --secondary: #7C3AED;
+            --dark: #0D1117;
+            --accent: #FFD700;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(0, 212, 255, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--dark);
+            color: white;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Estilo Moderno de Cristal */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hero Section - Jerarquía de Intención */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at top right, #1a1f2e, #0D1117);
+            padding: 0 10%;
+        }
+
+        .hero-content h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-main {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Secciones de Contenido */
+        section { padding: 80px 10%; }
+
+        .grid-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Formulario Inteligente */
+        .quote-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: white;
+        }
+
+        .price-tag {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer y Social */
+        footer { border-top: 1px solid var(--border); padding: 40px 10%; text-align: center; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 0 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav style="position: fixed; width: 100%; padding: 1.5rem 10%; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(13,17,23,0.9);">
+        <div style="font-family: 'Syne'; font-weight: 800; font-size: 1.5rem;">PRODIGITAL</div>
+        <a href="#contacto" class="btn-main" style="padding: 0.6rem 1.2rem; margin-top: 0;">Cotizar Ahora</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <span style="color: var(--primary); font-weight: bold; letter-spacing: 2px;">DISEÑO QUE VENDE</span>
+            <h1>Impulsamos tu negocio con <br> identidad digital de élite.</h1>
+            <p style="font-size: 1.2rem; color: #B0B8C1; max-width: 700px; margin: 0 auto;">Desde logos que impactan hasta sitios web que cierran ventas. Profesionalismo garantizado en Costa Rica.</p>
+            <a href="#servicios" class="btn-main">Ver Soluciones</a>
+        </div>
+    </header>
+
+    <section id="servicios">
+        <h2 style="text-align: center; margin-bottom: 3rem; font-family: 'Syne'; font-size: 2.5rem;">Soluciones a tu Medida</h2>
+        <div class="grid-services">
+            <div class="glass-card">
+                <span class="price-tag">Desde $120</span>
+                <h3>Sitios Web Pro</h3>
+                <p>No solo una cara bonita, sino una oficina virtual abierta 24/7 para captar clientes.</p>
+            </div>
+            <div class="glass-card">
+                <span class="price-tag">Desde $45</span>
+                <h3>Identidad de Marca</h3>
+                <p>Logos y manuales de marca que transmiten la confianza que tu negocio merece.</p>
+            </div>
+            <div class="glass-card">
+                <span class="price-tag">Desde $25</span>
+                <h3>Presencia Profesional</h3>
+                <p>CVs y tarjetas de presentación diseñadas para ganar oportunidades de alto valor.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" style="background: #111827;">
+        <div class="quote-form glass-card">
+            <h2 style="margin-bottom: 1rem;">Inicia tu proyecto</h2>
+            <p style="margin-bottom: 2rem; font-size: 0.9rem;">Cuéntanos qué necesitas y recibe una propuesta personalizada.</p>
+            
+            <form id="contactForm">
+                <input type="text" class="form-input" placeholder="Tu nombre" required>
+                <select class="form-input" id="serviceType">
+                    <option value="">¿En qué podemos ayudarte?</option>
+                    <option value="web">Sitio Web Profesional</option>
+                    <option value="brand">Diseño de Logotipo / Marca</option>
+                    <option value="print">Tarjetas / Material Impreso</option>
+                </select>
+                <textarea class="form-input" rows="4" placeholder="Cuéntanos un poco sobre tu negocio..."></textarea>
+                
+                <div style="background: rgba(0,212,255,0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.85rem;">
+                    <strong>ℹ️ Proceso de Reserva:</strong> Para iniciar el diseño, solicitamos un 50% de adelanto mediante SINPE Móvil o Transferencia.
+                </div>
+
+                <button type="submit" class="btn-main" style="width: 100%;">Enviar Solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 PRODIGITAL Costa Rica | Elevando estándares digitales.</p>
+        <div style="margin-top: 1rem;">
+            <a href="https://wa.me/50672284602" style="color: var(--primary); text-decoration: none;">WhatsApp Directo</a>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica de interacción simple
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const service = document.getElementById('serviceType').value;
+            alert('¡Solicitud recibida! Un estratega te contactará para analizar tu proyecto de ' + service);
+        });
+    </script>
+</body>
+</html>
